@@ -5,8 +5,22 @@ const Header = React.createClass({
 });
 
 const SearchBar = React.createClass({
+  getInitialState: function() {
+    return { searchKey: "" };
+  },
+  searchHandler: function(event) {
+    const searchKey = event.target.value;
+    this.setState({ searchKey: searchKey });
+    this.props.searchHandler(searchKey);
+  },
   render: function() {
-    return <input type="search" />;
+    return (
+      <input
+        type="search"
+        value={this.state.symbol}
+        onChange={this.searchHandler}
+      />
+    );
   }
 });
 
