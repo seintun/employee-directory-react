@@ -2,7 +2,7 @@ employeeService = (function() {
   const findByName = function(searchKey) {
     const deferred = $.Deferred();
     const results = employees.filter(function(element) {
-      const fullName = element.firstName + " " + element.lastName;
+      const fullName = element.firstName + " " + element.lastName + " " + element.id;
       return fullName.toLowerCase().indexOf(searchKey.toLowerCase()) > -1;
     });
     deferred.resolve(results);
@@ -13,7 +13,7 @@ employeeService = (function() {
     const l = employees.length;
     let employee = null;
     for (let i = 0; i < l; i++) {
-      if (employees[i].id == id) {
+      if (employees[i].id === id) {
         employee = employees[i];
         break;
       }
