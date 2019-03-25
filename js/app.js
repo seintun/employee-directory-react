@@ -49,14 +49,11 @@ const EmployeeList = React.createClass({
 
 const HomePage = React.createClass({
   searchHandler: function(key) {
-    alert("Search key: " + key);
+    this.props.service.findByName(key).done(function(result) {
+      this.setState({ searchKey: key, employees: result });
+    }.bind(this));
   },
   render: function() {
-    const employees = [
-      { firstName: "Sein", lastName: "Tun" },
-      { firstName: "Super", lastName: "Gopher" },
-      { firstName: "John", lastName: "Smith" }
-    ];
     return (
       <div>
         <Header text="Employee Directory" />
