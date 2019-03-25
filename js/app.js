@@ -29,8 +29,7 @@ const EmployeeListItem = React.createClass({
     return (
       <li>
         <a href={"#employees/" + this.props.employee.id}>
-          {this.props.employee.firstName}
-          {this.props.employee.lastName}
+          {this.props.employee.firstName} {this.props.employee.lastName}
         </a>
       </li>
     );
@@ -69,4 +68,8 @@ const HomePage = React.createClass({
   }
 });
 
-React.render(<HomePage service={employeeService} />, document.body);
+router.addRoute("", function() {
+  React.render(<HomePage service={employeeService} />, document.body);
+});
+
+router.start();
