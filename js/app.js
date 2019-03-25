@@ -1,6 +1,17 @@
 const Header = React.createClass({
   render: function() {
-    return <h1 className="title">{this.props.text}</h1>;
+    return (
+      <header className="bar bar-nav">
+        <a
+          href="#"
+          className={
+            "icon icon-left-nav pull-left" +
+            (this.props.back === "true" ? "" : " hidden")
+          }
+        />
+        <h1 className="title">{this.props.text}</h1>
+      </header>
+    );
   }
 });
 
@@ -15,11 +26,13 @@ const SearchBar = React.createClass({
   },
   render: function() {
     return (
-      <input
-        type="search"
-        value={this.state.symbol}
-        onChange={this.searchHandler}
-      />
+      <div className="bar bar-standard bar-header-secondary">
+        <input
+          type="search"
+          value={this.state.symbol}
+          onChange={this.searchHandler}
+        />
+      </div>
     );
   }
 });
@@ -27,9 +40,20 @@ const SearchBar = React.createClass({
 const EmployeeListItem = React.createClass({
   render: function() {
     return (
-      <li>
+      <li className="table-view-cell media">
         <a href={"#employees/" + this.props.employee.id}>
+          <img
+            className="media-object small pull-left"
+            src={
+              "pics/" +
+              this.props.employee.firstName +
+              "_" +
+              this.props.employee.lastName +
+              ".jpg"
+            }
+          />
           {this.props.employee.firstName} {this.props.employee.lastName}
+          <p>{this.props.employee.title}</p>
         </a>
       </li>
     );
@@ -39,10 +63,9 @@ const EmployeeListItem = React.createClass({
 const EmployeeList = React.createClass({
   render: function() {
     const items = this.props.employees.map(function(employee) {
-      console.log(employee);
       return <EmployeeListItem key={employee.id} employee={employee} />;
     });
-    return <ul>{items}</ul>;
+    return <ul className="table-view">{items}</ul>;
   }
 });
 
@@ -60,9 +83,12 @@ const HomePage = React.createClass({
   render: function() {
     return (
       <div>
-        <Header text="Employee Directory" />
+        <Header text="Employee Directory" back="false" />
         <SearchBar searchHandler={this.searchHandler} />
-        <EmployeeList employees={this.state.employees} />
+        {/* create list like content */}
+        <div className="content">
+          <EmployeeList employees={this.state.employees} />
+        </div>
       </div>
     );
   }

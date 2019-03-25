@@ -36,7 +36,7 @@ employeeService = (function() {
       officePhone: "781-000-0001",
       email: "contact@seintun.dev",
       city: "San Francisco, CA",
-      pic: "james_king.jpg",
+      pic: "sein_tun.jpg",
       twitterId: "@sein_tun",
       blog: "http://www.linkedin.com/in/seintun"
     },
