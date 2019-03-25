@@ -8,6 +8,19 @@ employeeService = (function() {
     deferred.resolve(results);
     return deferred.promise();
   };
+  const findById = function(id) {
+    const deferred = $.Deferred();
+    const l = employees.length;
+    let employee = null;
+    for (let i = 0; i < l; i++) {
+      if (employees[i].id == id) {
+        employee = employees[i];
+        break;
+      }
+    }
+    deferred.resolve(employee);
+    return deferred.promise();
+  };
 
   const employees = [
     {
@@ -217,6 +230,7 @@ employeeService = (function() {
   ];
 
   return {
-    findByName: findByName
+    findByName: findByName,
+    findById: findById
   };
 })();
