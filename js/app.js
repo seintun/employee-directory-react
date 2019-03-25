@@ -49,7 +49,7 @@ const EmployeeList = React.createClass({
 
 const HomePage = React.createClass({
   getInitialState: function() {
-    return { employee: [] };
+    return { employees: [] };
   },
   searchHandler: function(key) {
     this.props.service.findByName(key).done(
@@ -63,10 +63,10 @@ const HomePage = React.createClass({
       <div>
         <Header text="Employee Directory" />
         <SearchBar searchHandler={this.searchHandler} />
-        <EmployeeList employees={employees} />
+        <EmployeeList employees={this.state.employees} />
       </div>
     );
   }
 });
 
-React.render(<HomePage />, document.body);
+React.render(<HomePage service={employeeService} />, document.body);
