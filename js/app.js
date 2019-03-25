@@ -10,14 +10,26 @@ const SearchBar = React.createClass({
   }
 });
 
-const EmployeeList = React.createClass({
+const EmployeeListItem = React.createClass({
   render: function() {
     return (
-      <ul>
-        <li>Sein Tun</li>
-        <li>John Smith</li>
-      </ul>
+      <li>
+        <a href={"#employees/" + this.props.employee.id}>
+          {this.props.employee.firstName}
+          {this.props.employee.lastName}
+        </a>
+      </li>
     );
+  }
+});
+
+const EmployeeList = React.createClass({
+  render: function() {
+    const items = this.props.employees.map(function(employee) {
+      console.log(employee)
+      return <EmployeeListItem key={employee.id} employee={employee} />;
+    });
+    return <ul>{items}</ul>;
   }
 });
 
@@ -32,7 +44,7 @@ const HomePage = React.createClass({
       <div>
         <Header text="Employee Directory" />
         <SearchBar />
-        <EmployeeList employee={employees} />
+        <EmployeeList employees={employees} />
       </div>
     );
   }
