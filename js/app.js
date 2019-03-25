@@ -26,7 +26,7 @@ const EmployeeListItem = React.createClass({
 const EmployeeList = React.createClass({
   render: function() {
     const items = this.props.employees.map(function(employee) {
-      console.log(employee)
+      console.log(employee);
       return <EmployeeListItem key={employee.id} employee={employee} />;
     });
     return <ul>{items}</ul>;
@@ -34,6 +34,9 @@ const EmployeeList = React.createClass({
 });
 
 const HomePage = React.createClass({
+  searchHandler: function(key) {
+    alert("Search key: " + key);
+  },
   render: function() {
     const employees = [
       { firstName: "Sein", lastName: "Tun" },
@@ -43,7 +46,7 @@ const HomePage = React.createClass({
     return (
       <div>
         <Header text="Employee Directory" />
-        <SearchBar />
+        <SearchBar searchHandler={this.searchHandler} />
         <EmployeeList employees={employees} />
       </div>
     );
