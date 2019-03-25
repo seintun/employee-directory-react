@@ -48,10 +48,15 @@ const EmployeeList = React.createClass({
 });
 
 const HomePage = React.createClass({
+  getInitialState: function() {
+    return { employee: [] };
+  },
   searchHandler: function(key) {
-    this.props.service.findByName(key).done(function(result) {
-      this.setState({ searchKey: key, employees: result });
-    }.bind(this));
+    this.props.service.findByName(key).done(
+      function(result) {
+        this.setState({ searchKey: key, employees: result });
+      }.bind(this)
+    );
   },
   render: function() {
     return (
