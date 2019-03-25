@@ -1,21 +1,17 @@
 const Header = React.createClass({
-  render: function(){
-    return(
-      <h1 className="title">{this.props.text}</h1>
-    );
+  render: function() {
+    return <h1 className="title">{this.props.text}</h1>;
   }
 });
 
 const SearchBar = React.createClass({
-  render: function(){
-    return (
-      <input type="search" />    
-    );
+  render: function() {
+    return <input type="search" />;
   }
 });
 
 const EmployeeList = React.createClass({
-  render: function(){
+  render: function() {
     return (
       <ul>
         <li>Sein Tun</li>
@@ -26,18 +22,20 @@ const EmployeeList = React.createClass({
 });
 
 const HomePage = React.createClass({
-  render: function(){
+  render: function() {
+    const employees = [
+      { firstName: "Sein", lastName: "Tun" },
+      { firstName: "Super", lastName: "Gopher" },
+      { firstName: "John", lastName: "Smith" }
+    ];
     return (
       <div>
-        <Header text="Employee Directory"/>
+        <Header text="Employee Directory" />
         <SearchBar />
-        <EmployeeList />
+        <EmployeeList employee={employees} />
       </div>
     );
   }
 });
 
-React.render(
-  <HomePage />,
-  document.body
-);
+React.render(<HomePage />, document.body);
