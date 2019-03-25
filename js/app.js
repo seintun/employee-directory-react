@@ -108,11 +108,75 @@ const EmployeePage = React.createClass({
   render: function() {
     return (
       <div>
-        <Header text="Employee Details" />
-        <h3>
-          {this.state.employee.firstName} {this.state.employee.lastName}
-        </h3>
-        {this.state.employee.title}
+        <Header text="Employee" back="true" />
+        <div className="card">
+          <ul className="table-view">
+            <li className="table-view-cell media">
+              <img
+                className="media-object big pull-left"
+                src={
+                  "pics/" +
+                  this.state.employee.firstName +
+                  "_" +
+                  this.state.employee.lastName +
+                  ".jpg"
+                }
+              />
+              <h1>
+                {this.state.employee.firstName} {this.state.employee.lastName}
+              </h1>
+              <p>{this.state.employee.title}</p>
+            </li>
+            <li className="table-view-cell media">
+              <a
+                href={"tel:" + this.state.employee.officePhone}
+                className="push-right"
+              >
+                <span className="media-object pull-left icon icon-call" />
+                <div className="media-body">
+                  Call Office
+                  <p>{this.state.employee.officePhone}</p>
+                </div>
+              </a>
+            </li>
+            <li className="table-view-cell media">
+              <a
+                href={"tel:" + this.state.employee.mobilePhone}
+                className="push-right"
+              >
+                <span className="media-object pull-left icon icon-call" />
+                <div className="media-body">
+                  Call Mobile
+                  <p>{this.state.employee.mobilePhone}</p>
+                </div>
+              </a>
+            </li>
+            <li className="table-view-cell media">
+              <a
+                href={"sms:" + this.state.employee.mobilePhone}
+                className="push-right"
+              >
+                <span className="media-object pull-left icon icon-sms" />
+                <div className="media-body">
+                  SMS
+                  <p>{this.state.employee.mobilePhone}</p>
+                </div>
+              </a>
+            </li>
+            <li className="table-view-cell media">
+              <a
+                href={"mailto:" + this.state.employee.email}
+                className="push-right"
+              >
+                <span className="media-object pull-left icon icon-email" />
+                <div className="media-body">
+                  Email
+                  <p>{this.state.employee.email}</p>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     );
   }

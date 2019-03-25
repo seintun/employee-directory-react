@@ -2,7 +2,8 @@ employeeService = (function() {
   const findByName = function(searchKey) {
     const deferred = $.Deferred();
     const results = employees.filter(function(element) {
-      const fullName = element.firstName + " " + element.lastName + " " + element.id;
+      const fullName =
+        element.firstName + " " + element.lastName + " " + element.id;
       return fullName.toLowerCase().indexOf(searchKey.toLowerCase()) > -1;
     });
     deferred.resolve(results);
@@ -13,7 +14,7 @@ employeeService = (function() {
     const l = employees.length;
     let employee = null;
     for (let i = 0; i < l; i++) {
-      if (employees[i].id === id) {
+      if (employees[i].id == id) {
         employee = employees[i];
         break;
       }
@@ -21,7 +22,14 @@ employeeService = (function() {
     deferred.resolve(employee);
     return deferred.promise();
   };
-
+  const findByManager = function(managerId) {
+    const deferred = $.Deferred();
+    const results = employees.filter(function(element) {
+      return managerId === element.managerId;
+    });
+    deferred.resolve(results);
+    return deferred.promise();
+  };
   const employees = [
     {
       id: 1,
@@ -231,6 +239,7 @@ employeeService = (function() {
 
   return {
     findByName: findByName,
-    findById: findById
+    findById: findById,
+    findByManager: findByManager
   };
 })();
